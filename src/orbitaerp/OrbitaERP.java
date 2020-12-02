@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import GUI.Login;
+import GUI.Menu;
 
 /**
  *
@@ -39,8 +40,8 @@ public class OrbitaERP {
         
         //Creando imagen de presentacion
         try{
-            image = ImageIO.read(new File(dir+"\\src\\Images\\Orbita_Logo.jpg"));
-            Image image2 = image.getScaledInstance(1000, 785,  java.awt.Image.SCALE_SMOOTH);
+            image = ImageIO.read(new File(dir+"\\src\\Images\\Orbita_Logo_Bienvenida.jpg"));
+            Image image2 = image.getScaledInstance(700, 700,  java.awt.Image.SCALE_SMOOTH);
             icon = new ImageIcon(image2);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"No se encontro imagen de inicio\n","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -50,7 +51,7 @@ public class OrbitaERP {
         label.setIcon(icon);
         welcome.setUndecorated(true);
         welcome.add (label);
-        welcome.setSize (1000,785);
+        welcome.setSize (700,700);
         welcome.setLocationRelativeTo ( null );
         welcome.setVisible ( true );
         
@@ -65,12 +66,32 @@ public class OrbitaERP {
         }
         welcome.setVisible(false);
         
+        
+        //Creando imagen de login
+        try{
+            image = ImageIO.read(new File(dir+"\\src\\Images\\Orbita_Login.jpg"));
+            Image image2 = image.getScaledInstance(700, 700,  java.awt.Image.SCALE_SMOOTH);
+            icon = new ImageIcon(image2);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"No se encontro imagen de Login\n","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /*
+        label = new JLabel();
         //Mostrando el login
         Login login = new Login();
+        login.add (label);
+        login.setSize (700,700);
         login.setLocationRelativeTo(null);
         login.setTitle("Orbita - Login");
         login.setVisible(true);
+        */
         
+        //SALTARSE EL LOGIN
+        Menu menu = new Menu();
+        menu.setLocationRelativeTo(null);
+        menu.setTitle("Orbita - Menu Principal");
+        menu.setVisible(true);
 
         
     }

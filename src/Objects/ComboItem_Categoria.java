@@ -9,11 +9,11 @@ package Objects;
  *
  * @author halda
  */
-public class ComboItem {
+public class ComboItem_Categoria {
     private int value;
     private String label;
 
-    public ComboItem(int value, String label) {
+    public ComboItem_Categoria(int value, String label) {
         this.value = value;
         this.label = label;
     }
