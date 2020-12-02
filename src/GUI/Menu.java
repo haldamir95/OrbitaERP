@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -208,7 +209,8 @@ public class Menu extends javax.swing.JFrame {
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         Inventario inventario = new Inventario();
         inventario.setLocationRelativeTo(null);
-        inventario.setExtendedState(MAXIMIZED_BOTH); 
+        inventario.setPreferredSize(new Dimension(1600,900));
+        //inventario.setExtendedState(MAXIMIZED_BOTH); 
         inventario.setTitle("Orbita - Inventario");
         inventario.setVisible(true);
         this.dispose();
