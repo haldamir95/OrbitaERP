@@ -8,6 +8,7 @@ package GUI;
 import DataBase.db;
 import Objects.ComboItem_Categoria;
 import Objects.ComboItem_Rol;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -23,6 +24,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
@@ -40,7 +42,8 @@ public class Inventario extends javax.swing.JFrame {
     DefaultTableModel modelo;
     TableRowSorter<DefaultTableModel> tr;
     
-    //CONSTRUCTOR
+    //--------------------------------------------------CONSTRUCTOR----------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
     public Inventario() {
         initComponents();
         
@@ -48,8 +51,8 @@ public class Inventario extends javax.swing.JFrame {
         try{
             image = ImageIO.read(new File(dir+"\\src\\Images\\Orbita_Inventario.jpg"));
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            jLabel1.setBounds(0, 0, 1600, 900);
-            Image image2 = image.getScaledInstance(1600, 900,  java.awt.Image.SCALE_SMOOTH);
+            jLabel1.setBounds(0, 0, 1600, 850);
+            Image image2 = image.getScaledInstance(1600, 850,  java.awt.Image.SCALE_SMOOTH);
             icon = new ImageIcon(image2);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"No se encontro imagen de menu\n","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -74,8 +77,20 @@ public class Inventario extends javax.swing.JFrame {
         
         //Llenando tabla de productos
         llenarProductos();
-    }
+        
+        //Cambiando color del header
+        JTableHeader header = jTable1.getTableHeader();
+        header.setBackground(new Color(128,0,128));
+        header.setForeground(new Color(255,255,255));
 
+    }
+    //-----------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    //------------------------------------------COMPONENTES JAVA-------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,6 +140,7 @@ public class Inventario extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -275,12 +291,12 @@ public class Inventario extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel10))
-                .addGap(60, 60, 60)
+                .addGap(53, 53, 53)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -423,7 +439,7 @@ public class Inventario extends javax.swing.JFrame {
         jPanel3.setBounds(50, 130, 410, 220);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255, 185));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Productos"));
 
         jLabel14.setText("Filtrar");
 
@@ -451,6 +467,13 @@ public class Inventario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton9.setText("Deseleccionar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -463,7 +486,8 @@ public class Inventario extends javax.swing.JFrame {
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -472,19 +496,19 @@ public class Inventario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(50, 360, 950, 490);
+        jPanel5.setBounds(50, 360, 950, 440);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255, 185));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagen del Producto"));
 
-        jLabel16.setText("jLabel16");
         jLabel16.setMaximumSize(new java.awt.Dimension(500, 500));
         jLabel16.setMinimumSize(new java.awt.Dimension(500, 500));
         jLabel16.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -493,21 +517,21 @@ public class Inventario extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 405, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel6);
-        jPanel6.setBounds(1010, 360, 540, 490);
+        jPanel6.setBounds(1010, 360, 540, 440);
 
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(1600, 900));
@@ -523,7 +547,7 @@ public class Inventario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
         );
 
         pack();
@@ -656,7 +680,7 @@ public class Inventario extends javax.swing.JFrame {
         String imagen = jTextField8.getText();
         
         
-        if(jComboBox2.getSelectedIndex()>=0){
+        if(jComboBox2.getSelectedIndex()>=0 && isNumeric(costoUnitario) && isNumeric(stock)){
             int categoria = ((ComboItem_Categoria)jComboBox2.getSelectedItem()).getValue();
             
             db db = new db();
@@ -673,13 +697,14 @@ public class Inventario extends javax.swing.JFrame {
                 jTextField7.setText("");
                 jTextField8.setText("");
                 jComboBox2.setSelectedIndex(-1);
+                setClearProduct();
                 //jComboBox3.setSelectedIndex(-1);
                 llenarProductos();
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null,"Error al crear Producto\nExcepcion: "+e,"ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }else{
-            JOptionPane.showMessageDialog(null,"Debe seleccionar un Categoria","ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"1. Debe seleccionar un Categoria\n2. Costo Unitario y Stock deben ser Numericos","ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -750,7 +775,7 @@ public class Inventario extends javax.swing.JFrame {
         jTextField7.setText(jTable1.getValueAt(fila, 6).toString());
         jTextField8.setText(jTable1.getValueAt(fila, 8).toString());
         int clase_producto = Integer.parseInt(jTable1.getValueAt(fila, 9).toString());
-        for (int i = 0; i < jComboBox1.getComponentCount()+1; i++) {
+        for (int i = 0; i <= jComboBox1.getItemCount(); i++) {
             int claseCombo = ((ComboItem_Categoria)jComboBox1.getItemAt(i)).getValue();
             if(claseCombo == clase_producto){
                 jComboBox2.setSelectedIndex(i);
@@ -760,7 +785,7 @@ public class Inventario extends javax.swing.JFrame {
         //Seteando Imagen de Fondo
         try{
             String imagen = jTable1.getValueAt(fila, 8).toString();
-            if(imagen.equals("")){
+            if(!existeImagen(imagen)){
                 imagen = dir+"\\src\\Images\\no_Image.png";
             }
             image = ImageIO.read(new File(imagen));
@@ -770,6 +795,7 @@ public class Inventario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No se encontro imagen de menu\n","ERROR", JOptionPane.ERROR_MESSAGE);
         }
         jLabel16.setIcon(icon);
+        this.repaint();
     }//GEN-LAST:event_jTable1MouseClicked
 
     //ELIMINAR PRODUCTO
@@ -803,11 +829,34 @@ public class Inventario extends javax.swing.JFrame {
         filtrar(jTextField9.getText());
     }//GEN-LAST:event_jTextField9KeyReleased
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        fila = -1;
+        jTable1.getSelectionModel().clearSelection();
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jComboBox2.setSelectedIndex(-1);
+        jLabel16.setIcon(null);
+        setClearProduct();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    //-----------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    
+    
+    //--------------------------------------------------FUNCIONES----------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
     private void filtrar(String query){
         jTable1.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
-    
     
     //LLENAR COMBOS DE CATEGORIA
     private void llenarCombosCategoria(){
@@ -865,7 +914,7 @@ public class Inventario extends javax.swing.JFrame {
             while(resultado.next()){
                 String categoria = "";
                 int clase_producto = Integer.parseInt(resultado.getString("clase_producto"));
-                for (int i = 0; i < jComboBox1.getComponentCount()+1; i++) {
+                for (int i = 0; i <= jComboBox1.getItemCount(); i++) {
                     int claseCombo = ((ComboItem_Categoria)jComboBox1.getItemAt(i)).getValue();
                     if(claseCombo == clase_producto){
                         categoria = ((ComboItem_Categoria)jComboBox1.getItemAt(i)).getLabel();
@@ -899,8 +948,43 @@ public class Inventario extends javax.swing.JFrame {
         jTable1.setRowSorter(tr);
     }
     
+    //PONER IMAGEN LIMPIA EN PRODUCTO
+    private void setClearProduct(){
+        try{
+            image = ImageIO.read(new File(dir+"\\src\\Images\\Clear_Product.png"));
+            jLabel1.setBounds(0, 0, 1600, 850);
+            //Image image2 = image.getScaledInstance(1600, 850,  java.awt.Image.SCALE_SMOOTH);
+            icon = new ImageIcon(image);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"No se encontro imagen de menu\n","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        jLabel16.setIcon(icon);
+    }
     
+    //VALIDAR SI ES NUMERO
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
     
+    public boolean existeImagen(String imagen){
+        try{
+            image = ImageIO.read(new File(imagen));
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
+    //-----------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
     
     /**
      * @param args the command line arguments
@@ -947,6 +1031,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<Objects.ComboItem_Categoria> jComboBox1;
     private javax.swing.JComboBox<Objects.ComboItem_Categoria> jComboBox2;
     private javax.swing.JLabel jLabel1;
